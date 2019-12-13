@@ -94,13 +94,32 @@
 <a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; 67 2008   Jul 05-Jul-08  99.89278        NA       NA  05 100     0.5251011</span></a>
 <a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; 68 2008   Jul 06-Jul-08  99.91041        NA       NA  06 100     0.5251011</span></a>
 <a class="sourceLine" id="cb3-9" title="9"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(US_price_month)</a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;   year period  PS_month       CPI inflation_CPI inflation_PS</span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt; 1 2008    M07 100.00080 100.00000     0.5251011           NA</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt; 2 2008    M08 100.18985  99.60084    -0.3991562   0.18905320</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt; 3 2008    M09 100.15130  99.46309    -0.1383019  -0.03848464</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt; 4 2008    M10  98.98386  98.45838    -1.0101333  -1.16567630</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt; 5 2008    M11  98.29480  96.57262    -1.9152895  -0.69612623</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt; 6 2008    M12  97.25257  95.57382    -1.0342474  -1.06031229</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;   year period month  PS_month       CPI inflation_CPI inflation_PS      mdate</span></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt; 1 2008    M07   Jul 100.00080 100.00000     0.5251011           NA 2008-07-01</span></a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt; 2 2008    M08   Aug 100.18985  99.60084    -0.3991562   0.18905320 2008-08-01</span></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt; 3 2008    M09   Sep 100.15130  99.46309    -0.1383019  -0.03848464 2008-09-01</span></a>
+<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt; 4 2008    M10   Oct  98.98386  98.45838    -1.0101333  -1.16567630 2008-10-01</span></a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt; 5 2008    M11   Nov  98.29480  96.57262    -1.9152895  -0.69612623 2008-11-01</span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt; 6 2008    M12   Dec  97.25257  95.57382    -1.0342474  -1.06031229 2008-12-01</span></a></code></pre></div>
+</div>
+<div id="data-visualization" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-visualization" class="anchor"></a>data visualization</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> US_price_month, <span class="kw">aes</span>(<span class="dt">x =</span> mdate, <span class="dt">y =</span> PS_month), <span class="dt">color =</span> <span class="st">"blue"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> US_price_month, <span class="kw">aes</span>(<span class="dt">x =</span> mdate, <span class="dt">y =</span> CPI), <span class="dt">color =</span> <span class="st">"red"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">'months'</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">'Price indexes number'</span>)</a></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"> This graph compares the online price index with the official CPI. This graph shows that online price index is relatively higher than official CPI.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> US_price_month, <span class="kw">aes</span>(<span class="dt">x =</span> mdate, <span class="dt">y =</span> inflation_CPI), <span class="dt">color =</span> <span class="st">"blue"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> US_price_month, <span class="kw">aes</span>(<span class="dt">x =</span> mdate, <span class="dt">y =</span> inflation_PS), <span class="dt">color =</span> <span class="st">"red"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">'months'</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">'inflation'</span>)</a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; Warning: Removed 1 rows containing missing values (geom_path).</span></a></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="100%"> This graph shows that online price index is quite close to official CPI.</p>
 </div>
 </div>
   </div>
