@@ -43,11 +43,39 @@ head(US_price_indexes)
 #> 67 2008   Jul 05-Jul-08  99.89278        NA       NA  05 100     0.5251011
 #> 68 2008   Jul 06-Jul-08  99.91041        NA       NA  06 100     0.5251011
 head(US_price_month)
-#>   year period  PS_month       CPI inflation_CPI inflation_PS
-#> 1 2008    M07 100.00080 100.00000     0.5251011           NA
-#> 2 2008    M08 100.18985  99.60084    -0.3991562   0.18905320
-#> 3 2008    M09 100.15130  99.46309    -0.1383019  -0.03848464
-#> 4 2008    M10  98.98386  98.45838    -1.0101333  -1.16567630
-#> 5 2008    M11  98.29480  96.57262    -1.9152895  -0.69612623
-#> 6 2008    M12  97.25257  95.57382    -1.0342474  -1.06031229
+#>   year period month  PS_month       CPI inflation_CPI inflation_PS      mdate
+#> 1 2008    M07   Jul 100.00080 100.00000     0.5251011           NA 2008-07-01
+#> 2 2008    M08   Aug 100.18985  99.60084    -0.3991562   0.18905320 2008-08-01
+#> 3 2008    M09   Sep 100.15130  99.46309    -0.1383019  -0.03848464 2008-09-01
+#> 4 2008    M10   Oct  98.98386  98.45838    -1.0101333  -1.16567630 2008-10-01
+#> 5 2008    M11   Nov  98.29480  96.57262    -1.9152895  -0.69612623 2008-11-01
+#> 6 2008    M12   Dec  97.25257  95.57382    -1.0342474  -1.06031229 2008-12-01
 ```
+
+## data visualization
+
+``` r
+library(ggplot2)
+ggplot() + 
+  geom_line(data = US_price_month, aes(x = mdate, y = PS_month), color = "blue") +
+  geom_line(data = US_price_month, aes(x = mdate, y = CPI), color = "red") +
+  xlab('months') +
+  ylab('Price indexes number')
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" /> This
+graph compares the online price index with the official CPI. This graph
+shows that online price index is relatively higher than official CPI.
+
+``` r
+library(ggplot2)
+ggplot() + 
+  geom_line(data = US_price_month, aes(x = mdate, y = inflation_CPI), color = "blue") +
+  geom_line(data = US_price_month, aes(x = mdate, y = inflation_PS), color = "red") +
+  xlab('months') +
+  ylab('inflation')
+#> Warning: Removed 1 rows containing missing values (geom_path).
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" /> This
+graph shows that online price index is quite close to official CPI.
