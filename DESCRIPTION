@@ -1,0 +1,24 @@
+Package: USPriceIndex
+Type: Package
+Title: A dataset for US price index
+Version: 1.0
+Authors@R: person("Jiaqing", "Ge", email = "jg4185@columbia.edu",
+  role = c("aut", "cre"))
+Depends:
+    R (>= 2.10)
+Description: This package is a dataset combining the Price Index based on web scrapping information created in the paper
+  “The Billion Prices Project: Using Online Data for Measurement and Research” – Journal of Economic Perspectives , 31(1)
+  with the official consumer price index released by US government. 
+Encoding: UTF-8
+LazyData: true
+License: MIT + file LICENSE
+Suggests:
+    tidyverse,
+    jsonlite,
+    httr,
+    readr,
+    knitr,
+    rmarkdown,
+    ggplot2
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr
