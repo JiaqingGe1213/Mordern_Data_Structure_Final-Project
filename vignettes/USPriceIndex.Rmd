@@ -12,8 +12,59 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+  out.width = "100%"
 ```
+# USpriceIndex Package
 
-```{r setup}
+This package is a package combining the Price Index based on web scrapping information created in the paper “The Billion Prices Project: Using Online Data for Measurement and Research” – Journal of Economic Perspectives,31(1) with the official consumer price index released by US government. 
+
+The PriceStats (PS) index is released online in csv form for scholars to replicate this research  via Harvard/MIT Dataverse:
+
+https://dataverse.harvard.edu/file.xhtml?persistentId=doi:10.7910/DVN/6RQCRS/KGU8B0&version=2.0
+
+The official CPI data can be accessed through Bureau of labor statistics and the documentation for this API is as follows:
+
+https://www.bls.gov/developers/api_signature_v2.htm
+
+It contains 2 datasets:
+    
+    US_price_indexes: It contains Daily price indexes in US from 2008.07-2015.08 from the sources above.
+    US_price_month: It contains monthly price indexes in US from 2008.07-2015.08 from the sources above.
+
+## Example
+
+This is a basic demonstration of the dataset:
+
+```{r}
+# To use this package, please use library()
 library(USPriceIndex)
 ```
+
+Here are the basic demostration of the datasets:
+```{r}
+head(US_price_indexes)
+head(US_price_month)
+```
+
+## data visualization
+```{r}
+library(ggplot2)
+ggplot() + 
+  geom_line(data = US_price_month, aes(x = mdate, y = PS_month), color = "blue") +
+  geom_line(data = US_price_month, aes(x = mdate, y = CPI), color = "red") +
+  xlab('months') +
+  ylab('Price indexes number')
+```
+
+This graph compares the online price index with the official CPI. This graph shows that online price index is relatively higher than official CPI.
+
+```{r}
+library(ggplot2)
+ggplot() + 
+  geom_line(data = US_price_month, aes(x = mdate, y = inflation_CPI), color = "blue") +
+  geom_line(data = US_price_month, aes(x = mdate, y = inflation_PS), color = "red") +
+  xlab('months') +
+  ylab('inflation')
+```
+
+This graph shows that online price index is quite close to official CPI. 
